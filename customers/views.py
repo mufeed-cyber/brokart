@@ -27,7 +27,7 @@ def show_account(request):
             )
             # create customer accounts
             customer=Customer.objects.create(
-                name=customer,
+                name=username,
                 user=user,
                 phone=phone,
                 address=address
@@ -39,14 +39,14 @@ def show_account(request):
             error_message="duplicate user name or invalid inputs"
             messages.error(request,error_message)
     if request.POST and 'login' in request.POST:
-         context['register']=False
-         username=request.POST.get('username')
-         password=request.POST.get('password')
-         user=authenticate(username=username,password=password)
-         if user:
+        context['register']=False
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(username=username,password=password)
+        if user:
              login(request,user)
              return redirect('home')
-         else:
+        else:
              messages.error(request,'invalid user credential') 
 
     return render(request,'account.html',context)

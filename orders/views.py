@@ -39,7 +39,7 @@ def add_to_cart(request):
             ordered_item.quantity=quantity
             ordered_item.save()
         else:
-            ordered_item.quantity=ordered_item.quantity+quantity
+            ordered_item.quantity=ordered_item.quantity+int(quantity)
             ordered_item.save()
 
         return redirect('cart')
